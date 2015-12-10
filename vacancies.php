@@ -68,9 +68,13 @@ $vacancies_ar = $pdo->query($query)->fetchAll();
 		
 		<div class="tab-content">
 		
-			<div id="add" class="tab-pane row">
+			<section id="add" class="tab-pane row">
 				<div class="col-xs-6">
-				
+					
+					<header>
+						<h2 class="sr-only">Добавить вакансию</h2>
+					</header>
+					
 					<?php if ($error): ?>
 					<div class="alert alert-danger big">
 						<span class="glyphicon glyphicon-alert">
@@ -97,69 +101,53 @@ $vacancies_ar = $pdo->query($query)->fetchAll();
 					</form>
 				
 				</div>
-			</div>
+			</section >
 		
 		
-			<div id="list" class="tab-pane active row">	
+			<section  id="list" class="tab-pane active row">	
 				<div class="xs-col-12">
 				
-					<section>
-						<header>
-							<h2>Вакансии</h2>
-						</header>
-						
-						<table class="table table-striped">
-						<?php foreach($vacancies_ar as $vacancy): ?>
-						<tr>
-							<td><?php echo $vacancy['salary']; ?></td>
-							<td><?php echo $vacancy['company']; ?></td>
-							<td>
-								<a href="<?php echo $vacancy['url']; ?>" target="_blank">
-									<?php echo $vacancy['url']; ?>
-								</a>
-							</td>
-						</tr>
-						<?php endforeach; ?>
-						</table>
-					</section>
+					<header>
+						<h2 class="sr-only">Список вакансий</h2>
+					</header>
+					
+					<table class="table table-striped">
+						<thead>
+							<tr>
+								<th>Зарплата</th>
+								<th>Компания</th>
+								<th>Описание</th>
+							</tr>
+						</thead>
+						<tbody>
+							<?php foreach($vacancies_ar as $vacancy): ?>
+							<tr>
+								<td><?php echo $vacancy['salary']; ?></td>
+								<td><?php echo $vacancy['company']; ?></td>
+								<td>
+									<a href="<?php echo $vacancy['url']; ?>" target="_blank">
+										<?php echo $vacancy['url']; ?>
+									</a>
+								</td>
+							</tr>
+							<?php endforeach; ?>
+						</tbody>
+					</table>
 				
 				</div>
-			</div>
+			</section >
 		
 		</div>
 		
     </div>
 
-<!--
-<ul class="nav nav-tabs">
-	<li class="active">
-		<a href="#men" data-toggle="tab">Men</a>
-	</li>
-	<li>
-		<a href="#women" data-toggle="tab">Women</a>
-	</li>
-</ul>
-<div class="tab-content">
-	<div id="men" class="tab-pane active">
-		<a class="text-center" href="/up/ttt2.php?to_name=Erickthomas" title="Auto flirt to Erickthomas" target="_blank">
-			<figure class="thumbnail">
-				<img class="img-responsive" src="/lit/44/87452.jpg">
-				<figcaption class="caption">Erickthomas</figcaption>
-			</figure>
-		</a>
-	</div>
-	<div id="women" class="tab-pane">
-		<a class="text-center" href="/up/ttt2.php?to_name=Leanrolandlei" title="Auto flirt to Leanrolandlei" target="_blank">
-			<figure class="thumbnail">
-				<img class="img-responsive" src="/lit/44/87449.jpg">
-				<figcaption class="caption">Leanrolandlei</figcaption>
-			</figure>
-		</a>
-	</div>
-</div>
--->
-
     <script src="js/jquery-1.9.1.min.js"></script>
     <script src="js/bootstrap.js"></script>
+    <script src="js/plugins/jquery.tablesorter.js"></script>
+    <script>
+    $(function(){
+		$("table").tablesorter();
+    });
+    </script>
   </body>
 </html>
